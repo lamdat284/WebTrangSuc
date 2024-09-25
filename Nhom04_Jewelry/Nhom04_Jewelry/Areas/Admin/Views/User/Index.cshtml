@@ -1,0 +1,28 @@
+﻿@model List<Nhom04_Jewelry.Identity.AppUser>
+@{
+    ViewBag.Title = "Quản lý tài khoản";
+}
+
+<h2 class="text-center fw-bold">Quản lý tài khoản</h2>
+<table class="table">
+    <tr>
+        <th>Tài khoản</th>
+        <th>Họ tên</th>
+        <th>Email</th>
+        <th>Ngày sinh</th>
+        <th>Giới tính</th>
+        <th>Địa chỉ</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.UserName</td>
+            <td>@item.HoTen</td>
+            <td>@item.Email</td>
+            <td>@item.NgaySinh</td>
+            <td>@item.GioiTinh</td>
+            <td>@item.DiaChi</td>
+        </tr>
+    }
+</table>
+<a class="btn text-white bg-dark" onclick="back()">Cancel</a>

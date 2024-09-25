@@ -1,0 +1,82 @@
+﻿@model List<Nhom04_Jewelry.Models.Product>
+@{
+    ViewBag.Title = "Index";
+}
+
+<a href="/admin/products/create" class="btn btn-success my-2"> Create </a>
+<table class="table">
+    <tr>
+        <th class="text-center">
+            Mã
+        </th>
+        <th class="text-center">
+            Tên sản phẩm
+        </th>
+        <th class="text-center">
+            Giá
+        </th>
+        <th class="text-center">
+            Mô tả
+        </th>
+        <th class="text-center">
+            Ảnh
+        </th>
+        <th class="text-center">
+            Mã Loại
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-center">@item.ProductID</td>
+            <td class="text-center">@item.ProductName</td>
+            <td class="text-center">@item.Price</td>
+            <td class="w-50">@item.Descriptions</td>
+            <td class="text-center"><img src="/img/@item.Images" style="width:50px" /></td>
+            <td class="text-center">@item.CategoryID</td>
+
+            <td>
+                <a href="/admin/products/update/@item.ProductID" class="btn btn-warning"> Edit </a>
+                <a href="/admin/products/delete/@item.ProductID" class="btn btn-danger"> Delete </a>
+            </td>
+        </tr>
+    }
+</table>
+@{
+    int PrevPage = ViewBag.Page - 1;
+    if (PrevPage <= 0)
+    {
+        PrevPage = 1;
+    }
+    int NextPage = ViewBag.Page + 1;
+    if (NextPage > ViewBag.Page + 1)
+    {
+        NextPage = ViewBag.NoOfPages;
+    }
+}
+<ul class="pagination justify-content-center ">
+    <li class="page-item">
+        <a class="page-link" href="/admin/home/index?page=@PrevPage" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+    </li>
+    @for (int i = 0; i < ViewBag.NoOfPages; i++)
+    {
+        if (i + 1 == ViewBag.Page)
+        {
+            <li class="page-item active"><a class="page-link" href="/admin/home/index?page=@(i + 1)">@(i + 1)</a></li>
+        }
+        else
+        {
+            <li class="page-item"><a class="page-link" href="/admin/home/index?page=@(i+1)">@(i+1)</a></li>
+        }
+
+    }
+    <li class="page-item">
+        <a class="page-link" href="/admin/home/index?page=@NextPage" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+    </li>
+</ul>
+

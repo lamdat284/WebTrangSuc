@@ -1,0 +1,101 @@
+﻿@model List<Nhom04_Jewelry.Models.Category>
+
+@{
+    ViewBag.Title = "Quản lý loại";
+}
+<h2 class="text-center fw-bold">Quản lý loại</h2>
+
+<table class="table tablecate">
+    <tr>
+        <th class="text-center">
+            Mã loại
+        </th>
+        <th class="text-center">
+            Tên loại
+        </th>
+        <th></th>
+    </tr>
+</table>
+<button style="border:none;background-color:Highlight;color:black;font-weight:bold;width:auto;height:8%" class="btn my-3" type="button" id="btnTable">Xem</button>
+<button style="border:none;background-color:Highlight;color:black;font-weight:bold;width:auto;height:8%" class="btn my-3" type="button" id="AddCate">Create</button>
+<form><div id="AddCate1" class="container text-center justify-content-center bg-body-secondary shadow-lg" style="width:20%"></div></form>
+
+
+
+
+
+<script>
+
+
+    $('#btnTable').click(() => {
+        $('.tablecate').empty();
+        $('.tablecate').append('<tr><th class="text-center">Mã loại</th><th class="text-center">Tên loại</th><th></th></tr>');
+        $.ajax({
+            type: 'GET',
+            url: '/api/category',
+            success: (responses) => {
+                for (var i = 0; i < responses.length; i++) {
+                    const cateRow = responses[i];
+                    const strHtml = '<tr><td class="text-center">' + cateRow.CategoryID + '</td><td class="text-center">' + cateRow.CategoryName + '</td><td></td ></tr > ';
+                    $('.tablecate').append(strHtml);
+                }
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        });
+    });
+
+    $(document).on('click', 'btnUpdateView', (event) => {
+        const brid = $(event.target).attr('datas-cateid');
+        $.ajax({
+            type: 'GET',
+            url: `/api/category?id=${brid}`,
+            success: (response) => {
+                $('#CateIDSpan').html(response.CategoryID);
+                $('#CateNameSpan').html(response.CategoryName);
+            }
+            ,
+            error: (err) => { console.log(err) }
+        });
+    })
+
+
+    $('#AddCate').one('click', () => {
+        $.ajax({
+            success: (repon) => {
+                const strHtml = '<div><label for="CategoryName">Tên loại</label><input id="txtCateName" class="form-control fw-bold" placeholder = "Tên loại" /><button id="btnThem" class="btn btn-warning text-dark fw-bold my-2" type="button">Thêm</button></div>'
+                $('#AddCate1').append(strHtml);
+            }
+        });
+    });
+
+
+
+    $('#AddCate').one('click', () => {
+        $('#AddCate1').on('click', '#btnThem', () => {
+            const categoryName = $('#txtCateName').val();
+            $.ajax({
+                type: 'POST',
+                url: '/api/category',
+                data: { categoryName: categoryName },
+                success: (response) => {
+
+                    $('#AddCate1').empty();
+                    $('#btnTable').trigger('click');
+                },
+                error: (error) => {
+
+                    console.error('Đã xảy ra lỗi: ', error);
+                }
+            });
+        });
+    });
+
+
+
+
+
+
+
+</script>

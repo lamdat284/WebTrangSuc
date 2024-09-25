@@ -1,0 +1,29 @@
+﻿@model Nhom04_Jewelry.Identity.AppUser
+
+@{
+    ViewBag.Title = "MyProfile";
+    Layout = "~/Views/Shared/_LayoutPage3.cshtml";
+}
+
+<table class="table">
+        <tr>
+            <th class="fs-5">Tài khoản</th>
+            <th class="fs-5">Họ và tên</th>
+            <th class="fs-5">Email</th>
+            <th class="fs-5">Ngày sinh</th>
+            <th class="fs-5">Địa chỉ</th>
+            <th class="fs-5">Giới tính</th>
+        </tr>
+        <tr>
+
+            <td>@Model.UserName</td>
+            <td>@Model.HoTen</td>
+            <td>@Model.Email</td>
+            <td>@Model.NgaySinh</td>
+            <td>@Model.DiaChi</td>
+            <td>@Model.GioiTinh</td>
+        </tr>
+    </table>
+    <a href="@Url.Action("Index","Home")" class="btn btn-dark">BACK</a>
+
+

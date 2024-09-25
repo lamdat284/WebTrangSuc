@@ -1,0 +1,77 @@
+﻿@model Nhom04_Jewelry.ViewModel.DangKyVM
+
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_LayoutPage3.cshtml";
+}
+
+@using (Html.BeginForm("DangKy", "Account", FormMethod.Post))
+{
+    <div class="container text-center shadow-lg rounded-4 "style="width: 400px; height: auto; background-color: #F5F7F8 ">
+        <div class="mx-auto mt-5 ">
+            <h2 class="fw-bold py-4">ĐĂNG KÝ</h2>
+            <div class="row w-auto mx-auto">
+                <div>
+                    @Html.LabelFor(model => model.Username, new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.Username, new { @class = "form-control fw-bold", placeholder = "Username" })
+
+                </div>
+            </div>
+            <div class="row w-auto mx-auto">
+                <div>
+                    @Html.LabelFor(model => model.Hoten, new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.Hoten, new { @class = "form-control fw-bold", placeholder = "Hoten" })
+
+                </div>
+            </div>
+            <div class="row w-auto mx-auto">
+                <div>
+                    @Html.LabelFor(model => model.Password, new { @class = "form-label" })
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control fw-bold", placeholder = "Password" })
+
+                </div>
+            </div>
+            <div class="row w-auto mx-auto">
+                <div>
+                    @Html.LabelFor(model => model.ConfirmPassword, new { @class = "form-label" })
+                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control fw-bold", placeholder = "ConfirmPassword" })
+
+                </div>
+            </div>
+            <div class="row w-auto mx-auto">
+                <div>
+                    @Html.LabelFor(model => model.Email, new { @class = "form-label" })
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control fw-bold", placeholder = "Email" } })
+
+                </div>
+            </div>
+            <div class="row w-auto mx-auto">
+                <div>
+                    @Html.LabelFor(model => model.DiaChi, new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.DiaChi, new { @class = "form-control fw-bold", placeholder = "DiaChi" })
+
+                </div>
+            </div>
+            <div class="row w-auto mx-auto">
+                <div class="col-md-6">
+                    @Html.LabelFor(model => model.NgaySinh, new { @class = "form-label" })
+                    @Html.PasswordFor(model => model.NgaySinh, new { @class = "form-control fw-bold", placeholder = "NgaySinh", type = "date" })
+
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(model => model.GioiTinh, new { @class = "form-label" })
+                    @Html.TextBoxFor(model => model.GioiTinh, new { @class = "form-control fw-bold", placeholder = "GioiTinh" })
+
+                </div>
+            </div>
+            <div class="row w-auto mx-auto">@Html.ValidationSummary()</div>
+            <div class="row w-auto mx-auto my-4">
+                <div> <button type="submit" class="btn btn-dark">Đăng Ký</button></div>
+            </div>
+            <div class="row w-auto mx-auto pb-3">
+
+                <div> <a href="@Url.Action("DangNhap","Account")" class="btn btn-dark">Đăng Nhập</a></div>
+            </div>
+        </div>
+        </div>
+}

@@ -1,0 +1,10 @@
+﻿
+<div class="my-2 container-fluid">
+    <div class="bg-info text-center"><a class="list-group-item fs-4 fw-bold" href="@Url.Action("Index","Home")">@ViewBag.ListTitle</a></div>
+    <ul class="list-group text-center ">
+        @for (int i = 0; i < ViewBag.Item.Count; i++)
+        {
+            <li class="list-group-item border-0"><a style="text-decoration:none; color:black;" href="/admin/products/loai/@ViewBag.MA[i]">@ViewBag.Item[i]</a></li>
+        }
+    </ul>
+</div>

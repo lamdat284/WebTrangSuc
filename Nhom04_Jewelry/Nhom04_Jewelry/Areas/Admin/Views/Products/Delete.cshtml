@@ -1,0 +1,23 @@
+﻿@model Nhom04_Jewelry.Models.Product
+@{
+    ViewBag.Title = "Delete";
+}
+
+<form action="/admin/products/Delete/@Model.ProductID" method="post">
+    <input type="hidden" name="ProductId" value="@Model.ProductID" />
+    <table class="table">
+        <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Ảnh</th>
+        </tr>
+        <tr>
+            <td>@Model.ProductName</td>
+            <td>@Model.Price</td>
+            <td><img src="/img/@Model.Images" style="width:50px" /></td>
+        </tr>
+    </table>
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="@Url.Action("Index","Home")" class="btn btn-dark">Cancel</a>
+</form>
+

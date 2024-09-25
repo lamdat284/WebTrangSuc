@@ -1,0 +1,83 @@
+﻿@model List<Nhom04_Jewelry.Models.Product>
+@{
+    ViewBag.Title = "Quản lý sản phẩm";
+}
+
+<h2 class="text-center fw-bold">Quản lý sản phẩm</h2>
+
+<table class="table">
+    <tr>
+        <th class="text-center">
+            Mã sản phẩm
+        </th>
+        <th class="text-center">
+            Tên sản phẩm
+        </th>
+        <th class="text-center">
+            Đơn giá
+        </th>
+        <th class="text-center">
+            Mô tả
+        </th>
+        <th class="text-center">
+            Ảnh
+        </th>
+        <th class="text-center">
+            Loại Ảnh
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="text-center">@item.ProductID</td>
+            <td class="text-center">@item.ProductName</td>
+            <td class="text-center">@item.Price</td>
+            <td class="text-center">@item.Descriptions</td>
+            <td class="text-center"><img src="/img/@item.Images" style="width:50px" /></td>
+            <td class="text-center">@item.Images</td>
+            <td class="text-center">
+                <a href="/home/edit/@item.CategoryID" class="btn btn-warning"> Edit </a>
+                <a href="/home/delete/@item.CategoryID" class="btn btn-danger"> Delete </a>
+            </td>
+        </tr>
+    }
+</table>
+<a href="/admin/products/create" class="btn btn-success my-3"> Create </a>
+<a class="btn text-white bg-dark" onclick="back()">Cancel</a>
+@{
+    int PrevPage = ViewBag.Page - 1;
+    if (PrevPage <= 0)
+    {
+        PrevPage = 1;
+    }
+    int NextPage = ViewBag.Page + 1;
+    if (NextPage > ViewBag.Page + 1)
+    {
+        NextPage = ViewBag.NoOfPages;
+    }
+}
+<ul class="pagination justify-content-center mb-0">
+    <li class="page-item">
+        <a class="page-link" href="/admin/home/index?page=@PrevPage" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+    </li>
+    @for (int i = 0; i < ViewBag.NoOfPages; i++)
+    {
+        if (i + 1 == ViewBag.Page)
+        {
+            <li class="page-item active"><a class="page-link rounded-pill" href="/admin/home/index?page=@(i + 1)">@(i + 1)</a></li>
+        }
+        else
+        {
+            <li class="page-item"><a class="page-link" href="/admin/home/index?page=@(i+1)">@(i+1)</a></li>
+        }
+
+    }
+    <li class="page-item">
+        <a class="page-link" href="/admin/home/index?page=@NextPage" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+    </li>
+</ul>

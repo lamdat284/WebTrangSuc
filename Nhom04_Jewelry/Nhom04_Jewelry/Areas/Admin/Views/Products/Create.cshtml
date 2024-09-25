@@ -1,0 +1,53 @@
+﻿@model Nhom04_Jewelry.Models.Product
+
+@{
+    ViewBag.Title = "Create Product";
+}
+
+<h2 class="text-center my-5 fs-1">Thêm sản phẩm</h2>
+
+<div class="container">
+    @using (Html.BeginForm("Create", "Products", new { area = "Admin" }, FormMethod.Post)) { 
+        <div class="row my-3">
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.ProductName)
+                @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control fw-bold", placeholder = "Tên sản phẩm" })
+                @Html.ValidationMessageFor(row => row.ProductName)
+            </div>
+            <div class="col-md-6">
+                <label for="Price">Đơn giá</label>
+                @Html.TextBoxFor(m => m.Price, new { @class = "form-control fw-bold", type = "number" })
+                @Html.ValidationMessageFor(row => row.Price)
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-md-6 ">
+                @Html.LabelFor(model => model.Descriptions)
+                @Html.TextBoxFor(model => model.Descriptions, new { @class = "form-control fw-bold", placeholder = "Mô tả" })
+
+            </div>
+            <div class="col-md-6">
+                <label for="CategoryID">Loại</label>
+                @Html.DropDownListFor(row => row.CategoryID, new SelectList
+               (ViewBag.Categories, "CategoryID", "CategoryName"), "Please Select ...", new { @class = "fw-bold form-control" })
+                @Html.ValidationMessageFor(row => row.CategoryID)
+            </div>
+        </div>
+        <div class="row my-3">
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.Images, "Ảnh 1")
+                @Html.TextBoxFor(model => model.Images, new { type = "file", @class = "form-control fw-bold" })
+            </div>
+            <div class="col-md-6">
+                @Html.LabelFor(model => model.Imagess, "Ảnh 2")
+                @Html.TextBoxFor(model => model.Imagess, new { type = "file", @class = "form-control fw-bold" })
+            </div>
+        </div>
+        <div class="row my-5 ">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success">Create</button>
+                <a href="@Url.Action("Index","Home")" class="btn btn-dark">Cancel</a>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,37 @@
+﻿@model Nhom04_Jewelry.ViewModel.DangNhapVM
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/_LayoutPage3.cshtml";
+}
+
+@using (Html.BeginForm("DangNhap", "Account", FormMethod.Post))
+{
+    <div class="container-fluid text-center pt-4">
+        <div class="mx-auto my-5 shadow-lg rounded-4" style="background-color: #F5F7F8; width: 380px; height: auto">
+            <h2 class="fw-bold py-4">ĐĂNG NHẬP</h2>
+            <div class="row mx-auto" style="width:90%">
+                <div>
+                    @Html.LabelFor(model => model.Username, new { @class = "form-label fs-5" })
+                    @Html.TextBoxFor(model => model.Username, new { @class = "form-control fw-bold", id = "Username", placeholder = "Username" })
+                   
+                </div>
+            </div>
+            <div class="row mx-auto" style="width:90%">
+                <div>
+                    @Html.LabelFor(model => model.Password, new { @class = "form-label fs-5" })
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control fw-bold", id = "Password", placeholder = "Password" })
+
+                </div>
+            </div>
+            <div class="row mx-auto" style="width:90%">@Html.ValidationSummary()</div>
+                <div class="row w-auto mx-auto my-4">
+                    <div class="col-md-4"> </div>
+                    <div class="col-md-4"> <button type="submit" class="btn btn-dark">Đăng nhập</button></div>
+                </div>
+                <div class="row w-auto mx-auto">
+                    <div class="col-md-4"> </div>
+                    <div class="col-md-4 pb-3"> <a href="@Url.Action("DangKy","Account")" class="btn btn-dark">Đăng ký</a></div>
+                </div>
+            </div>
+        </div>
+}
